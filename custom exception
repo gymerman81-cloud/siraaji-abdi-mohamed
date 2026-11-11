@@ -1,0 +1,21 @@
+public class CustomExceptionDemo {
+
+    static class EmptyCollectionException extends RuntimeException {
+
+        public EmptyCollectionException(String collection) {
+            super("The " + collection + " is empty.");
+        }
+    }
+
+    public static void main(String[] args) {
+
+        try {
+
+            throw new EmptyCollectionException("Stack");
+
+        } catch (EmptyCollectionException e) {
+
+            System.out.println(e.getMessage());
+        }
+    }
+}
