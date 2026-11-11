@@ -1,0 +1,45 @@
+import java.util.Stack;
+
+public class RegistrationDemo {
+
+    static class Registration {
+
+        private String studentName;
+        private Stack<String> courses = new Stack<>();
+
+        public Registration(String studentName) {
+            this.studentName = studentName;
+        }
+
+        public void addCourse(String code) {
+            courses.push(code);
+
+            System.out.println(studentName + " added " + code);
+            System.out.println(courses);
+        }
+
+        public void undoLastCourse() {
+
+            if (courses.isEmpty()) {
+                System.out.println("Nothing to undo");
+                return;
+            }
+
+            String removed = courses.pop();
+
+            System.out.println("Removed: " + removed);
+            System.out.println(courses);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Registration student = new Registration("Hodan");
+
+        student.addCourse("CA314");
+        student.addCourse("CA301");
+        student.addCourse("MA210");
+
+        student.undoLastCourse();
+    }
+}
