@@ -1,0 +1,81 @@
+import java.util.Arrays;
+import java.util.EmptyStackException;
+
+public class ArrayStackDemo {
+
+    static class ArrayStack<T> {
+
+        private int top;
+        private T[] stack;
+
+        public ArrayStack() {
+            top = 0;
+            stack = (T[]) new Object[2];
+        }
+
+        public void push(T element) {
+
+            if (top == stack.length) {
+                stack = Arrays.copyOf(stack, stack.length * 2);
+            }
+
+            stack[top] = element;
+            top++;
+        }
+
+        public T pop() {
+
+            if (isEmpty()) {
+                throw new EmptyStackException();
+            }
+
+            top--;
+
+            T result = stack[top];
+            stack[top] = null;
+
+            return result;
+        }
+
+        public T peek() {
+
+            if (isEmpty()) {
+                throw new EmptyStackException();
+            }
+
+            return stack[top - 1];
+        }
+
+        public int size() {
+            return top;
+        }
+
+        public boolean isEmpty() {
+            return top == 0;
+        }
+
+        public int capacity() {
+            return stack.length;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        ArrayStack<String> stack = new ArrayStack<>();
+
+        stack.push("A");
+        stack.push("B");
+        stack.push("C");
+
+        System.out.println("Size: " + stack.size());
+        System.out.println("Capacity: " + stack.capacity());
+
+        System.out.println("Peek: " + stack.peek());
+
+        System.out.println("Pop: " + stack.pop());
+        System.out.println("Pop: " + stack.pop());
+        System.out.println("Pop: " + stack.pop());
+
+        System.out.println("Is Empty: " + stack.isEmpty());
+    }
+}
