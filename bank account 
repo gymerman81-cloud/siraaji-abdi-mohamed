@@ -1,0 +1,48 @@
+import java.util.Stack;
+
+public class BankAccountDemo {
+
+    static class BankAccount {
+
+        private double balance;
+        private Stack<Double> history = new Stack<>();
+
+        public BankAccount(double balance) {
+            this.balance = balance;
+        }
+
+        public void deposit(double amount) {
+            balance = balance + amount;
+            history.push(amount);
+
+            System.out.println("Deposit: " + amount);
+            System.out.println("Balance: " + balance);
+        }
+
+        public void undoLastDeposit() {
+
+            if (history.isEmpty()) {
+                System.out.println("Nothing to undo");
+                return;
+            }
+
+            double lastDeposit = history.pop();
+            balance = balance - lastDeposit;
+
+            System.out.println("Undo: " + lastDeposit);
+            System.out.println("Balance: " + balance);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        BankAccount account = new BankAccount(100);
+
+        account.deposit(50);
+        account.deposit(20);
+        account.deposit(30);
+
+        account.undoLastDeposit();
+        account.undoLastDeposit();
+    }
+}
