@@ -1,0 +1,47 @@
+public class LinkedListDemo {
+
+    static class Node {
+
+        String element;
+        Node next;
+
+        public Node(String element) {
+            this.element = element;
+            this.next = null;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        // Create B -> C
+        Node head = new Node("B");
+        head.next = new Node("C");
+
+        // Insert A at the beginning
+        Node newNode = new Node("A");
+
+        newNode.next = head;
+        head = newNode;
+
+        System.out.println("After inserting A:");
+        printList(head);
+
+        // Delete first node
+        head = head.next;
+
+        System.out.println("After deleting first node:");
+        printList(head);
+    }
+
+    public static void printList(Node head) {
+
+        Node current = head;
+
+        while (current != null) {
+
+            System.out.println(current.element);
+
+            current = current.next;
+        }
+    }
+}
