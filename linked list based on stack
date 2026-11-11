@@ -1,0 +1,84 @@
+import java.util.EmptyStackException;
+
+public class LinkedStackDemo {
+
+    static class Node<T> {
+
+        T element;
+        Node<T> next;
+
+        public Node(T element) {
+            this.element = element;
+            this.next = null;
+        }
+    }
+
+    static class LinkedStack<T> {
+
+        private int count;
+        private Node<T> top;
+
+        public LinkedStack() {
+            count = 0;
+            top = null;
+        }
+
+        public void push(T element) {
+
+            Node<T> newNode = new Node<>(element);
+
+            newNode.next = top;
+            top = newNode;
+
+            count++;
+        }
+
+        public T pop() {
+
+            if (isEmpty()) {
+                throw new EmptyStackException();
+            }
+
+            T result = top.element;
+
+            top = top.next;
+            count--;
+
+            return result;
+        }
+
+        public T peek() {
+
+            if (isEmpty()) {
+                throw new EmptyStackException();
+            }
+
+            return top.element;
+        }
+
+        public boolean isEmpty() {
+            return count == 0;
+        }
+
+        public int size() {
+            return count;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        LinkedStack<String> stack = new LinkedStack<>();
+
+        stack.push("A");
+        stack.push("B");
+        stack.push("C");
+
+        System.out.println("Size: " + stack.size());
+        System.out.println("Top: " + stack.peek());
+
+        System.out.println("Removed: " + stack.pop());
+
+        System.out.println("Top after pop: " + stack.peek());
+        System.out.println("Is Empty: " + stack.isEmpty());
+    }
+}
