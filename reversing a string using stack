@@ -1,0 +1,24 @@
+import java.util.Stack;
+
+public class ReverseString {
+
+    public static void main(String[] args) {
+
+        String input = "JAVA";
+
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < input.length(); i++) {
+            stack.push(input.charAt(i));
+        }
+
+        StringBuilder reversed = new StringBuilder();
+
+        while (!stack.isEmpty()) {
+            reversed.append(stack.pop());
+        }
+
+        System.out.println("Input: " + input);
+        System.out.println("Output: " + reversed);
+    }
+}
