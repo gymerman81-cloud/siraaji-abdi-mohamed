@@ -1,0 +1,26 @@
+public class BoxDemo {
+
+    static class Box<T> {
+        private T value;
+
+        public void set(T value) {
+            this.value = value;
+        }
+
+        public T get() {
+            return value;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Box<Integer> box1 = new Box<>();
+        box1.set(25);
+
+        Box<String> box2 = new Box<>();
+        box2.set("Ali");
+
+        System.out.println("Integer: " + box1.get());
+        System.out.println("String: " + box2.get());
+    }
+}
